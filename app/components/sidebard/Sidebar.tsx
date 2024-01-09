@@ -1,7 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import { IoBrowsersOutline, IoFootball, IoLogoReact } from 'react-icons/io5'
-import SidebarMenuItem from './SidebarMenuItem'
+import { IoBrowsersOutline, IoCalculator, IoFootball, IoHeartOutline, IoLogoReact } from 'react-icons/io5'
+import Link from 'next/link'
+import { SidebarMenuItem } from './SidebarMenuItem'
 
 const menuItems = [{
     icon: <IoBrowsersOutline size={30} />,
@@ -10,7 +11,7 @@ const menuItems = [{
     subtitle: 'Data Overview'
 },
 {
-    icon: <IoBrowsersOutline size={30} />,
+    icon: <IoCalculator size={30} />,
     path: '/dashboard/counter',
     title: 'Counter',
     subtitle: 'Counter Overview'
@@ -21,6 +22,12 @@ const menuItems = [{
     path: '/dashboard/pokemon',
     title: 'Pokemon Dex',
     subtitle: 'Generacion 1 estatitica'
+},
+{
+    icon: <IoHeartOutline size={30} />,
+    path: '/dashboard/favorites',
+    title: 'Pokemon Dex',
+    subtitle: 'Favorites Pokemons'
 },
 ]
 
@@ -38,7 +45,7 @@ export const Sidebar = () => {
 
             <div id="profile" className="px-6 py-10">
                 <p className="text-slate-500 mb-1">Welcome back,</p>
-                <a href="#" className="inline-flex space-x-2 items-center">
+                <Link href="#" className="inline-flex space-x-2 items-center">
                     <span>
 
                         <Image width={50} height={50} className="rounded-full w-8 h-8" src="https://pbs.twimg.com/profile_images/1736404145765076992/qjPrOpPK_400x400.jpg" alt="" />
@@ -46,17 +53,14 @@ export const Sidebar = () => {
                     <span className="text-sm md:text-base font-bold">
                         Arturo Rodriguez
                     </span>
-                </a>
+                </Link>
             </div>
 
             <div id="nav" className="w-full px-6">
 
                 {
                     menuItems.map(item => (
-                        <SidebarMenuItem
-                            key={item.path}
-                            {...item}
-                        />
+                        <SidebarMenuItem subTitle={''} key={item.path} {...item} />
                     ))
                 }
 

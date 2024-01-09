@@ -1,4 +1,4 @@
-import ReturnButton from "@/app/components/ReturnButton";
+import ReturnButton from "@/app/pokemons/components/ReturnButton";
 import { Pokemon, PokemonResponse } from "@/app/pokemons";
 import { stat } from "fs";
 import Image from "next/image";
@@ -10,7 +10,6 @@ interface Props {
 }
 
 //! En build time
-
 export async function generateStaticParams() {
     const data:PokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`)
     .then( res => res.json() );

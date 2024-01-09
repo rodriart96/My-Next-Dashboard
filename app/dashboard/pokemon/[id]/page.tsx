@@ -1,4 +1,4 @@
-import ReturnButton from "@/app/components/ReturnButton";
+import ReturnButton from "@/app/pokemons/components/ReturnButton";
 import { Pokemon } from "@/app/pokemons";
 import { stat } from "fs";
 import Image from "next/image";
