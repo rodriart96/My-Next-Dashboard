@@ -1,10 +1,17 @@
 'use client';
 import { addOne, initCounterState, restOne } from '@/store/counter/counterSlice';
 import { useAppDispatch, useAppSelector } from '@/store/store';
+import { get } from 'http';
 import React, { useEffect } from 'react'
 
 interface CartCounterProps {
     value: number
+}
+
+const getApiCounter = async () => {
+    const data = await fetch('/api/counter').then(res => res.json());
+    console.log({data});
+    return data;
 }
 
 export const CartCounter = ({ value }: CartCounterProps) => {
@@ -12,9 +19,17 @@ export const CartCounter = ({ value }: CartCounterProps) => {
     const count = useAppSelector(state => state.counter.count)
     const dispatch = useAppDispatch();
 
+    // useEffect(() => {
+    //     dispatch(initCounterState(value))
+    // }, [dispatch, value])
+
     useEffect(() => {
-        dispatch(initCounterState(value))
-    }, [dispatch, value])
+      getApiCounter()
+      .then(({count}) => {
+        dispatch(initCounterState(count))
+      }) 
+    }, [dispatch])
+    
 
     return (
         <>
